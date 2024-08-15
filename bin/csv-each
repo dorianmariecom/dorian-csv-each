@@ -21,7 +21,9 @@ argv =
 
 abort "See --help" if argv.size != 1
 
-CSV.parse($stdin.each_line.to_a.join, headers: options[:headers]).each do |it|
-  it = options[:headers] ? it.to_h.with_indifferent_access : it.to_a
-  eval(argv.first)
-end
+CSV
+  .parse($stdin.each_line.to_a.join, headers: options[:headers])
+  .each do |it|
+    it = options[:headers] ? it.to_h.with_indifferent_access : it.to_a
+    eval(argv.first)
+  end
