@@ -27,9 +27,11 @@ inputs = [$stdin.each_line.to_a.map(&:strip).join("\n")] if inputs.empty?
 headers = parsed.options.headers
 
 inputs.each do |input|
-  CSV.parse(input, headers:).each do |it|
-    it = headers ? it.to_h.to_struct : it.to_a
+  CSV
+    .parse(input, headers:)
+    .each do |it|
+      it = headers ? it.to_h.to_struct : it.to_a
 
-    eval(parsed.arguments.join(" "))
-  end
+      eval(parsed.arguments.join(" "))
+    end
 end
