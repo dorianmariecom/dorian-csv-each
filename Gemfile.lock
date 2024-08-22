@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dorian-csv-each (0.4.3)
+    dorian-csv-each (0.4.4)
       csv
       dorian-arguments
       dorian-to_struct
