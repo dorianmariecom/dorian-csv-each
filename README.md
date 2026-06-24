@@ -1,28 +1,41 @@
-# `dorian-each`
+# `dorian-csv-each`
 
-Evaluates some code on each line of the input
+Run a Ruby snippet for each CSV row.
 
-e.g. `ls -l | each "puts l.split.first"`
-
-### Install
+## Install
 
 ```bash
-gem install dorian-each
+gem install dorian-csv-each
 ```
 
-Or as part of my other gems:
+Also included in the aggregate gem:
 
 ```bash
 gem install dorian
 ```
 
-### Usage
-
-From my history:
+## Usage
 
 ```bash
-pbpaste | each "puts line.split('-')[1].split.first" | uniq
-git grep Thing test/ | grep isocode | each "puts l.split(':').first" | sort | uniq | xvim
-cat file.csv | each "code, name = l.split(\"\\t\"); if code.include?(','); puts code; else; puts code.gsub(' ', '') + ',' + name; end"
-git grep thing | grep " doc " | each "puts l.split(':').first" | xvim
+csv-each [options] [file ...] "ruby code"
+```
+
+Run `csv-each -h` for generated option details and `csv-each -v` for the installed version.
+
+## Notes
+
+- Sets `it` to each row array. With `--headers`, `it` is a struct keyed by header name.
+
+## Examples
+
+### Print the second column
+
+```bash
+echo a,b,c | csv-each "puts it[1]"
+```
+
+Output:
+
+```text
+b
 ```
